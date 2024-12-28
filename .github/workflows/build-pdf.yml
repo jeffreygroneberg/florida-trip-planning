@@ -1,30 +1,41 @@
-name: Convert Markdown to PDF
+name: Nightly PDF Release
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build-pdf:
+  build-and-release-pdf:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
 
-      - name: Install Dependencies (Pandoc + basic LaTeX)
+      - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc texlive-latex-base
 
       - name: Convert Markdown to PDF
-        run: |
-          pandoc README.md -o README.pdf
+        run: pandoc README.md -o README.pdf
 
-      - name: Upload PDF Artifact
-        uses: actions/upload-artifact@v3
+      - name: Create or Update "Nightly" Release
+        id: create_release
+        uses: actions/create-release@v1
         with:
-          name: README-pdf
-          path: README.pdf
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: nightly                   # Reuse the same tag for every push
+          release_name: "Nightly Release"
+          draft: false
+          prerelease: false
+          fail_if_exists: false              # Prevent error if tag already exists
+
+      - name: Upload PDF to Release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: README.pdf
+          asset_name: README.pdf
+          asset_content_type: application/pdf
