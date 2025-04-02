@@ -1,12 +1,4 @@
-Perfect, thanks for the details! I’ll put together a relaxed and kid-friendly itinerary for October 3–16 with stops in Destin, Pensacola, and possibly Panama City Beach. The plan will include:
 
-- One or two family-friendly activities per day
-- Plenty of beach and pool downtime
-- Recommendations for beachfront hotels or resorts with family suites
-- Fun dining options, especially those with appeal for kids
-- Guidance on how to travel between cities without renting a car (e.g., rideshare, shuttle services, or local transport)
-
-I’ll get started and will let you know when it’s ready!
 
 # Emerald Coast Family Vacation Itinerary (Oct 3–16)
 
